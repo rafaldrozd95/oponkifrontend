@@ -1,0 +1,48 @@
+.shop-content {
+  display: grid;
+  grid-gap: 20px;
+}
+.fake-checkbox {
+  background: white;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px black solid;
+}
+
+.fake-checkbox__checked::after {
+  content: "";
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  background: rgb(255, 196, 0);
+  border: 1px black solid;
+}
+.choice-pair {
+  display: flex;
+  flex-direction: row;
+}
+.choice-pair label {
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
+.choice-pair input[type="radio"]:checked + div {
+  background: rgb(255, 196, 0);
+}
+
+@media (max-width: 768px) {
+  .choice-pair label {
+    font-size: 1.5rem;
+  }
+  .fake-checkbox {
+    background: white;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border: 1px black solid;
+    margin-bottom: 5px;
+  }
+}

@@ -1,0 +1,125 @@
+.shop-content {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  margin-bottom: 10px;
+}
+.choice-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.choice-box h2 {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.choice-box select {
+  font-size: 1.6rem;
+}
+.shop-content .btn {
+  margin-top: 5px;
+}
+.search-result {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(4, 1fr);
+}
+.search-result h2 {
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.search-result img {
+  width: 100%;
+  height: 220px;
+  border: 1px black solid;
+  border-bottom: 2px rgb(255, 196, 0) solid;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+.tyre-item {
+  padding: 5px;
+  border-radius: 10px;
+}
+.tyre-item p {
+  font-weight: bold;
+  margin-top: 4px;
+  font-size: 1.2rem;
+  margin-left: 10px;
+}
+.price-button {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+}
+
+.page-set {
+  grid-column: 2/3;
+  display: flex;
+  justify-content: center;
+}
+.page-set .btn {
+  margin: 10px;
+  display: block;
+  width: 80px;
+  height: 40px;
+}
+.page-set .left::after {
+  content: "<";
+  font-size: 20px;
+}
+.page-set .right::after {
+  font-size: 20px;
+
+  content: ">";
+}
+.form-filter .btn {
+  width: 100%;
+  height: 60px;
+  margin-top: 20px;
+}
+@media (max-width: 768px) {
+  .price-button {
+    grid-template-columns: 1fr 1fr;
+  }
+  .price-button a {
+    width: 100%;
+  }
+  .price-button .btn {
+    width: 100%;
+  }
+  .shop-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .search-result {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .search-result .tyre-item {
+    width: 80%;
+  }
+  .choice-box h2 {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 2rem;
+  }
+  .form-filter {
+    background: rgb(240, 238, 234);
+    padding: 20px 60px 20px 60px;
+  }
+  .form-filter .btn {
+    width: 100%;
+    height: 60px;
+    margin-top: 20px;
+  }
+  .search-result img {
+    width: 100%;
+    height: 300px;
+    border: 1px black solid;
+    border-bottom: 2px rgb(255, 196, 0) solid;
+    margin-bottom: 5px;
+    border-radius: 4px;
+  }
+}

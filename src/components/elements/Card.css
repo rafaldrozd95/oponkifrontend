@@ -1,0 +1,25 @@
+.card p {
+  font-size: 15px;
+  text-align: center;
+  text-justify: inter-cluster;
+  word-break: break-all;
+  width: 99%;
+  overflow: hidden;
+}
+.card img {
+  width: 100%;
+  height: 220px;
+  margin-bottom: 20px;
+  border-bottom: 2px rgb(255, 196, 0) solid;
+}
+
+.card h3 {
+  margin-bottom: 5px;
+}
+.card a {
+  display: inline-block;
+  padding-top: 10px;
+  color: #ffa600;
+  text-transform: uppercase;
+  font-weight: bold;
+}

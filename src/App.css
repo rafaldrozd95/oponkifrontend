@@ -1,0 +1,15 @@
+.container {
+  background: rgb(255, 255, 255);
+  width: 90%;
+  margin: auto;
+  max-width: 1400px;
+  min-height: 1000px;
+}
+.btn-div {
+  margin-bottom: 20px;
+}
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+}

@@ -1,0 +1,175 @@
+.tyre-info {
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  grid-gap: 0px;
+}
+
+.tyre-images {
+  border-radius: 10px 0 0px 10px;
+  grid-column: 1;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: stretch;
+  align-content: flex-start;
+  grid-gap: 10px;
+  background: rgba(255, 196, 0, 0.774);
+}
+.tyre-specs {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.986);
+  border-left: 5px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 10px;
+  border-radius: 0px 10px 10px 0px;
+  border: 2px solid black;
+}
+
+.desc {
+  width: 70%;
+  margin: 20px 40px 30px 20px;
+  color: black;
+}
+.desc p {
+  font-size: 1.2rem;
+}
+.tyre-specs .tyre-parameter {
+  width: 70%;
+  margin: 20px 40px 30px 20px;
+  height: 100px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  border-radius: 5px;
+  background: rgb(42, 42, 41);
+  border-bottom: 2px solid orange;
+}
+.tyre-parameter p {
+  color: rgb(216, 106, 4);
+  font-size: 1.4rem;
+  text-transform: capitalize;
+}
+.tyre-parameter h1 {
+  grid-column: 1/3;
+  color: rgb(216, 106, 4);
+}
+.tyre-parameter h3 {
+  color: rgb(250, 245, 245);
+}
+.lupka {
+  color: rgb(255, 179, 0, 0.6);
+  width: 200px;
+  height: 200px;
+  margin-left: 0;
+  transform: translateY(-40%);
+}
+
+.tyre-small-images {
+  grid-column: 1;
+  display: grid;
+
+  grid-gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.tyre-main-image {
+  position: relative;
+
+  margin: 0;
+}
+.edit {
+  width: 100%;
+  padding: 40px;
+  text-align: center;
+}
+.tyre-main-image img {
+  box-sizing: border-box;
+  width: 100%;
+  height: 40vh;
+  border: 1px black solid;
+}
+
+.tyre-main-image:hover {
+  cursor: pointer;
+}
+.lupa {
+  position: relative;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-top: -21vh;
+  left: 0;
+}
+.tyre-small-images img {
+  width: 100%;
+  height: 140px;
+  filter: brightness(90%);
+  box-shadow: 0px 2px rgba(0, 0, 0, 0.513);
+}
+.tyre-small-images img:hover {
+  cursor: pointer;
+  filter: brightness(100%);
+}
+@media (max-width: 768px) {
+  .tyre-info {
+    grid-template-columns: 1fr;
+  }
+  .tyre-images {
+    border-radius: 0;
+  }
+  .tyre-specs {
+    border-radius: 0;
+    border: none;
+  }
+  .tyre-specs h3,
+  .tyre-specs h4 {
+    width: 100%;
+  }
+  .lupa {
+    margin-top: -25vh;
+  }
+  .lupka {
+    transform: translateY(-30%);
+  }
+  .tyre-specs .tyre-parameter {
+    width: 100%;
+    width: 100%;
+    margin: 20px 0 20px 0;
+  }
+  .desc {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+@media (max-width: 350px) {
+  .tyre-small-images {
+    grid-column: 1;
+    display: grid;
+
+    grid-gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lupa {
+    margin-top: -35vh;
+    transform: translateY(10vh);
+  }
+  .lupka {
+    transform: translateY(-30%);
+  }
+  .tyre-specs .tyre-parameter {
+    width: 100%;
+  }
+  .desc {
+    width: 100%;
+  }
+}

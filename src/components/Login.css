@@ -1,0 +1,33 @@
+.input-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+}
+.input-fields input {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  width: 98%;
+}
+
+.input-fields textarea {
+  font-size: 1.1rem;
+  width: 98%;
+}
+.input-fields input:focus,
+.input-fields textarea:focus {
+  outline: none;
+  border: none;
+  border: 2px rgb(255, 196, 0) solid;
+}
+.input-fields h2 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.btn-div {
+  margin-top: 10px;
+}
+
+.input-fields select {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}

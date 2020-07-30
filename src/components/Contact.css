@@ -1,0 +1,25 @@
+.map {
+  margin: 20px 0 20px 0;
+  width: 100%;
+  height: 400px;
+}
+.pair {
+  min-width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+.contact-content h1 {
+  margin-bottom: 20px;
+}
+.pair p {
+  font-size: 25px;
+  padding: 0;
+}
+.contact-content {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
