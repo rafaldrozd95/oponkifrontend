@@ -19,7 +19,6 @@
   font-size: 25px;
 }
 .btn:hover {
-  opacity: 80%;
   background: rgb(255, 196, 0);
   color: #000;
 }
