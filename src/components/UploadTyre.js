@@ -62,7 +62,7 @@ const UploadTyre = () => {
       formData.append("description", formState.description);
       formData.append("imageCover", formState.imageCover[0]);
       for (let i = 0; i < formState.image["length"]; i++) {
-        formData.append("images", formState.image[i]);
+        formData.append("image", formState.image[i]);
       }
       formData.append("name", formState.name);
       formData.append("price", formState.price);
@@ -109,7 +109,7 @@ const UploadTyre = () => {
           options={["terenowa", "wzmacniana", "samochodowa"]}
           onInput={onInput}
         />
-        <h2>Rodzaj opony</h2>
+        <h2>Sezon</h2>
         <Input
           id='sezon'
           element='select'
@@ -153,6 +153,8 @@ const UploadTyre = () => {
           id='profil'
           element='select'
           options={[
+            "10.5",
+            "12.5",
             "35",
             "40",
             "45",

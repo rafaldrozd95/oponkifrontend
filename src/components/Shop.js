@@ -149,6 +149,8 @@ const Shop = () => {
             id='profil'
             element='select'
             options={[
+              "10.5",
+              "12,5",
               "35",
               "40",
               "45",
