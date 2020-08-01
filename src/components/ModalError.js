@@ -21,7 +21,7 @@ const ModalError = (props) => {
             onClick={(e) => {
               props.handleFunc(e);
               props.onCancel();
-              props.history.push("/");
+              props.history && props.history.push("/");
             }}
           >
             Tak

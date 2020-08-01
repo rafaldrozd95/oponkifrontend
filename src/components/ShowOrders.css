@@ -1,0 +1,22 @@
+.shop-content {
+  margin-top: 5vh;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  justify-items: center;
+}
+.order {
+  grid-column: 2/3;
+  padding: 20px;
+  width: 100%;
+  background: orange;
+  border-radius: 5px;
+
+  margin: auto;
+}
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+.buttons .btn {
+  grid-column: 2/3;
+}

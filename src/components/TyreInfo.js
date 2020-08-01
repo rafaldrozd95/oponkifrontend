@@ -117,6 +117,9 @@ const TyreInfo = () => {
                     <div className='btn edit'>Edytuj</div>
                   </Link>
                 )}
+                <Link to={`/order/${tid}`}>
+                  <div className='btn edit'>Zamów</div>
+                </Link>
               </div>
             </div>
             <div className='tyre-specs'>
@@ -127,7 +130,7 @@ const TyreInfo = () => {
                 <h3>Rodzaj opony:</h3>
                 <p>{data.type}</p>
               </div>
-               {data.year !== 0 && (
+              {data.year !== 0 && (
                 <div className='tyre-parameter'>
                   <h3>Rok Produkcji:</h3>
                   <p>{data.year}</p>

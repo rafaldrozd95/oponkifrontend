@@ -22,7 +22,7 @@ const Input = (props) => {
       ></input>
     ) : props.element === "textarea" ? (
       <textarea
-        rows='3'
+        rows={props.rows || "10"}
         defaultValue={props.def ? props.def : ""}
         onChange={handleInputChange}
       ></textarea>

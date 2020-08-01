@@ -54,7 +54,6 @@ const Login = () => {
         { "Content-Type": "application/json" }
       );
       auth.login(response.id, response.token, response.role);
-      console.log(response);
       history.push("/");
     } catch (err) {
       alert(err);

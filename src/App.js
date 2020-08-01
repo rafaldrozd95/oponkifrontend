@@ -16,6 +16,8 @@ import Login from "./components/Login";
 import AuthContext from "./context/auth-context";
 import UpdateTyre from "./components/UpdateTyre";
 import Contatct from "./components/Contact";
+import OrderForm from "./components/OrderForm";
+import ShowOrders from "./components/ShowOrders";
 
 const App = () => {
   const [token, setToken] = useState();
@@ -65,6 +67,9 @@ const App = () => {
             <Route path='/uploadTyre' exact>
               <UploadTyre />
             </Route>
+            <Route path='/showOrders' exact>
+              <ShowOrders />
+            </Route>
             <Route path='/login' exact>
               <Login />
             </Route>
@@ -74,6 +79,9 @@ const App = () => {
             <Route path='/garage' exact></Route>
             <Route path='/tyres/:tid' exact>
               <TyreInfo />
+            </Route>
+            <Route path='/order/:tid' exact>
+              <OrderForm />
             </Route>
             <Route path='/tyres/update/:tid' exact>
               <UpdateTyre />

@@ -12,6 +12,11 @@ const Navs = () => {
           <NavLink to='/uploadTyre'>Dodaj Produkt</NavLink>
         </li>
       )}
+      {auth.role === "admin" && (
+        <li>
+          <NavLink to='/showOrders'>Panel zamówień</NavLink>
+        </li>
+      )}
       <li>
         <NavLink to='/'>Strona glowna</NavLink>
       </li>
