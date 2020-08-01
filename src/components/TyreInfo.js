@@ -127,10 +127,12 @@ const TyreInfo = () => {
                 <h3>Rodzaj opony:</h3>
                 <p>{data.type}</p>
               </div>
-              <div className='tyre-parameter'>
-                <h3>Rok Produkcji:</h3>
-                <p>{data.year}</p>
-              </div>
+               {data.year !== 0 && (
+                <div className='tyre-parameter'>
+                  <h3>Rok Produkcji:</h3>
+                  <p>{data.year}</p>
+                </div>
+              )}
 
               <div className='tyre-parameter'>
                 <h3>Przeznaczenie opony:</h3>

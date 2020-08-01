@@ -30,6 +30,7 @@ const myReducer = (state, action) => {
   }
 };
 let startResponse;
+let startNextPage;
 const Shop = () => {
   const [tyres, setTyres] = useState();
   const [searchState, dispatch] = useReducer(myReducer, {});
@@ -41,22 +42,15 @@ const Shop = () => {
     console.log(searchState);
     try {
       const response = await sendRequest(
-        `${process.env.REACT_APP_API_URL}/api/tyres?profil=${searchState.profil}&sezon=${searchState.sezon}&szerokosc=${searchState.szerokosc}&type=${searchState.type}&srednica=${searchState.srednica}&clas=${searchState.rodzaj}&sorty=${searchState.sorty}&page=${page}`
+        `${process.env.REACT_APP_API_URL}/api/tyres?profil=${searchState.profil}&sezon=${searchState.sezon}&szerokosc=${searchState.szerokosc}&type=${searchState.type}&srednica=${searchState.srednica}&clas=${searchState.rodzaj}&sorty=${searchState.sorty}&page=1`
       );
       const nextPage = await sendRequest(
-        `${process.env.REACT_APP_API_URL}/api/tyres?profil=${
-          searchState.profil
-        }&sezon=${searchState.sezon}&szerokosc=${searchState.szerokosc}&type=${
-          searchState.type
-        }&srednica=${searchState.srednica}&clas=${searchState.rodzaj}&sorty=${
-          searchState.sorty
-        }&page=${page + 1}`
+        `${process.env.REACT_APP_API_URL}/api/tyres?profil=${searchState.profil}&sezon=${searchState.sezon}&szerokosc=${searchState.szerokosc}&type=${searchState.type}&srednica=${searchState.srednica}&clas=${searchState.rodzaj}&sorty=${searchState.sorty}&page=2`
       );
       setNextPage(nextPage.tyres);
       setTyres(response.tyres);
-    } catch (err) {
-      alert(err);
-    }
+      setPage(1);
+    } catch (err) {}
   };
   const onInput = useCallback((id, value) => {
     dispatch({
@@ -71,6 +65,24 @@ const Shop = () => {
       try {
         setTyres(null);
         startResponse = await sendRequest(
+          `${process.env.REACT_APP_API_URL}/api/tyres?profil=${searchState.profil}&sezon=${searchState.sezon}&szerokosc=${searchState.szerokosc}&type=${searchState.type}&srednica=${searchState.srednica}&clas=${searchState.rodzaj}&sorty=${searchState.sorty}&page=1`
+        );
+        startNextPage = await sendRequest(
+          `${process.env.REACT_APP_API_URL}/api/tyres?profil=${searchState.profil}&sezon=${searchState.sezon}&szerokosc=${searchState.szerokosc}&type=${searchState.type}&srednica=${searchState.srednica}&clas=${searchState.rodzaj}&sorty=${searchState.sorty}&page=2`
+        );
+        setNextPage(startNextPage.tyres);
+        setTyres(startResponse.tyres);
+      } catch (err) {}
+    };
+
+    func();
+  }, []);
+
+  useEffect(() => {
+    const func = async () => {
+      try {
+        setTyres(null);
+        const response = await sendRequest(
           `${process.env.REACT_APP_API_URL}/api/tyres?profil=${searchState.profil}&sezon=${searchState.sezon}&szerokosc=${searchState.szerokosc}&type=${searchState.type}&srednica=${searchState.srednica}&clas=${searchState.rodzaj}&sorty=${searchState.sorty}&page=${page}`
         );
         const nextPage = await sendRequest(
@@ -83,7 +95,7 @@ const Shop = () => {
           }&sorty=${searchState.sorty}&page=${page + 1}`
         );
         setNextPage(nextPage.tyres);
-        setTyres(startResponse.tyres);
+        setTyres(response.tyres);
       } catch (err) {}
     };
 
@@ -234,13 +246,7 @@ const Shop = () => {
 
         <button className='btn'>Filtruj</button>
         <div>
-          <button
-            className='btn'
-            onClick={(e) => {
-              e.preventDefault();
-              setTyres(startResponse.tyres);
-            }}
-          >
+          <button className='btn' onClick={() => window.location.reload()}>
             Resetuj filtry
           </button>
         </div>
@@ -251,9 +257,12 @@ const Shop = () => {
           tyres.map((el, index) => (
             <div className='tyre-item' key={index}>
               <h2>{el.name}</h2>
-              <img src={`${process.env.REACT_APP_API_URL}/${el.imageCover}`} />
+              <img
+                src={`${process.env.REACT_APP_API_URL}/${el.imageCover}`}
+                alt='sraka'
+              />
               <div className='price-button'>
-                <p>{el.price} PLN</p>
+                <p>{el.price}.00 PLN</p>
                 <Link to={`/tyres/${el._id}`}>
                   <button className='btn'> Sprawdz </button>
                 </Link>
@@ -280,3 +289,4 @@ const Shop = () => {
 };
 
 export default Shop;
+

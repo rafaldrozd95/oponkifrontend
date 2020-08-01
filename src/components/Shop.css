@@ -20,13 +20,16 @@
 }
 .search-result {
   display: grid;
-  grid-gap: 30px;
+  grid-column-gap: 30px;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  align-items: flex-start;
+  justify-items: start;
 }
 .search-result h2 {
   margin-bottom: 10px;
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 .search-result img {
@@ -49,8 +52,11 @@
 }
 .price-button {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
+}
+.price-button .btn {
+  width: 100%;
 }
 
 .page-set {
@@ -123,3 +129,4 @@
     border-radius: 4px;
   }
 }
+
