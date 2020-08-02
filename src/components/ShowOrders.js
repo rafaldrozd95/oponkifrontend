@@ -106,7 +106,7 @@ const ShowOrders = () => {
     }
   };
   return (
-    <div className='shop-content'>
+    <div className='shop-contentd'>
       <ModalInfo show={error} onCancel={() => setError(false)}>
         {`${error}`}
       </ModalInfo>
@@ -136,6 +136,7 @@ const ShowOrders = () => {
               <h4>Cena za sztukę: {el.opona.price}.00PLN</h4>
               <h4>Liczba sztuk: {el.ile}</h4>
               <h4>Cena za całość: {el.ile * el.opona.price}.00PLN</h4>
+	      <h3> Imie i Nazwisko: {el.imieinazwisko} </h3>
               <h3>
                 Adres: {el.adres} {el.postal} {el.city}
               </h3>

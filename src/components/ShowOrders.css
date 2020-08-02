@@ -1,10 +1,13 @@
-.shop-content {
+.shop-contentd {
   margin-top: 5vh;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  justify-items: center;
+  justify-items: start;
+  grid-gap: 30px;
+  margin-bottom: 20px;
 }
 .order {
+  margin-bottom: 30px;
   grid-column: 2/3;
   padding: 20px;
   width: 100%;
@@ -14,9 +17,32 @@
   margin: auto;
 }
 .buttons {
+  padding: 20px;
+  grid-gap: 4px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
 }
 .buttons .btn {
+  height: 50px;
   grid-column: 2/3;
 }
+@media (max-width: 768px) {
+  .shop-contentd {
+    grid-template-columns: 1fr;
+    grid-gap: 0;
+  }
+  .order {
+    margin-bottom: 30px;
+  }
+  .buttons {
+    padding: 20px;
+    grid-gap: 4px;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+  .buttons .btn {
+    width: 300px;
+  }
+}
+

@@ -11,7 +11,7 @@
   z-index: 100;
   padding: 10px;
   border-radius: 30px;
-  background: rgb(255, 136, 0);
+  background: rgb(255, 145, 0);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 .modal-info .modal-options {
@@ -53,9 +53,10 @@
   opacity: 1;
 }
 @media (max-width: 768px) {
-  .modal-error {
+  .modal-info {
     width: 100%;
     left: 0%;
-    width: 100%;
+    text-align: center;
   }
 }
+

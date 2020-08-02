@@ -246,8 +246,21 @@ const Shop = () => {
 
         <button className='btn'>Filtruj</button>
         <div>
-          <button className='btn' onClick={() => window.location.reload()}>
-            Resetuj filtry
+          <button
+            className='btn'
+            onClick={async () => {
+              setTyres(null);
+              const response = await sendRequest(
+                `${process.env.REACT_APP_API_URL}/api/tyres?page=1`
+              );
+              const nextPage = await sendRequest(
+                `${process.env.REACT_APP_API_URL}/api/tyres?page=2`
+              );
+              setNextPage(nextPage.tyres);
+              setTyres(response.tyres);
+            }}
+          >
+            Resetuj Filtry
           </button>
         </div>
       </form>

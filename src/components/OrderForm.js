@@ -92,6 +92,7 @@ const OrderForm = () => {
           phone: formState.phone,
           postal: formState.postal,
           opona: tid,
+          imieinazwisko: formState.imieinazwisko,
         }),
         { "Content-Type": "application/json" }
       );
@@ -120,7 +121,12 @@ const OrderForm = () => {
         <h1>Formularz zamówieniowy</h1>
         <h2>Nazwa opony: </h2>
         {data && <h1>{data.name}</h1>}
-        {data && <img src={data.imageCover} alt='obrazek' />}
+        {data && (
+          <img
+            src={`${process.env.REACT_APP_API_URL}/${data.imageCover}`}
+            alt='obrazek'
+          />
+        )}
       </div>
       <form onSubmit={handleSubmit}>
         <h2>Rodzaj przesyłki</h2>
@@ -137,8 +143,15 @@ const OrderForm = () => {
           options={["1", "2", "4", "6", "8"]}
           onInput={onInput}
         />
+        <h2>Imie i nazwisko</h2>
+        <Input
+          id='imieinazwisko'
+          element='text'
+          rows='5'
+          onInput={onInput}
+        />
         <h2>Dane adresowe</h2>
-        <Input id='adres' element='textarea' rows='5' onInput={onInput} />
+        <Input id='adres' element='text' rows='5' onInput={onInput} />
         <h2>Kod pocztowy</h2>
         <Input id='postal' element='text' rows='5' onInput={onInput} />
         <h2>Miasto</h2>
@@ -165,3 +178,4 @@ const OrderForm = () => {
 };
 
 export default OrderForm;
+

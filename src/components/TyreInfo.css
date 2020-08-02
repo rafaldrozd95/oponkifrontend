@@ -4,6 +4,9 @@
   grid-template-columns: 2fr 4fr;
   grid-gap: 0px;
 }
+.orderius {
+grid-column: 1/3;
+}
 
 .tyre-images {
   border-radius: 10px 0 0px 10px;

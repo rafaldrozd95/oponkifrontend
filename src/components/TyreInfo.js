@@ -117,9 +117,9 @@ const TyreInfo = () => {
                     <div className='btn edit'>Edytuj</div>
                   </Link>
                 )}
-                <Link to={`/order/${tid}`}>
+               <div className="orderius"> <Link to={`/order/${tid}`}>
                   <div className='btn edit'>Zamów</div>
-                </Link>
+                </Link></div>
               </div>
             </div>
             <div className='tyre-specs'>
