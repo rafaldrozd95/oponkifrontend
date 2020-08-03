@@ -5,32 +5,27 @@
   grid-gap: 0px;
 }
 .orderius {
-grid-column: 1/3;
+  grid-column: 1/3;
 }
 
 .tyre-images {
   border-radius: 10px 0 0px 10px;
   grid-column: 1;
-  padding: 20px;
   display: grid;
   grid-template-columns: 1fr;
   justify-items: stretch;
   align-content: flex-start;
   grid-gap: 10px;
-  background: rgba(255, 196, 0, 0.774);
+  background: rgba(255, 255, 255, 0.774);
 }
 .tyre-specs {
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.986);
-  border-left: 5px solid black;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  padding: 10px;
-  border-radius: 0px 10px 10px 0px;
-  border: 2px solid black;
+  padding: 0;
 }
 
 .desc {
@@ -39,11 +34,11 @@ grid-column: 1/3;
   color: black;
 }
 .desc p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 .tyre-specs .tyre-parameter {
-  width: 70%;
-  margin: 20px 40px 30px 20px;
+  width: 60%;
+  margin: 0 0px 30px 0;
   height: 100px;
   padding: 20px;
   display: grid;
@@ -51,23 +46,23 @@ grid-column: 1/3;
   align-items: center;
   justify-items: center;
   border-radius: 5px;
-  background: rgb(42, 42, 41);
-  border-bottom: 2px solid orange;
+  border: 1px solid black;
 }
 .tyre-parameter p {
-  color: rgb(216, 106, 4);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   text-transform: capitalize;
 }
 .tyre-parameter h1 {
   grid-column: 1/3;
-  color: rgb(216, 106, 4);
+  border-bottom: 2px solid orange;
 }
 .tyre-parameter h3 {
-  color: rgb(250, 245, 245);
+  color: rgb(20, 20, 20);
+  font-size: 1.3rem;
+  border-bottom: 1px solid orange;
 }
 .lupka {
-  color: rgb(255, 179, 0, 0.6);
+  color: rgba(168, 166, 162, 0.411);
   width: 200px;
   height: 200px;
   margin-left: 0;
@@ -77,14 +72,28 @@ grid-column: 1/3;
 .tyre-small-images {
   grid-column: 1;
   display: grid;
-
   grid-gap: 10px;
   grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
 }
 .tyre-main-image {
   position: relative;
 
   margin: 0;
+}
+.buttons-info {
+  grid-column: 1/3;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  width: 90%;
+  grid-gap: 10px;
+  margin-bottom: 10px;
+}
+.buttons-info .btn {
+  font-size: 1.5rem;
+  width: 100%;
+  border-radius: 5px;
 }
 .edit {
   width: 100%;
@@ -95,7 +104,7 @@ grid-column: 1/3;
   box-sizing: border-box;
   width: 100%;
   height: 40vh;
-  border: 1px black solid;
+  border: 1px solid rgb(170, 170, 170);
 }
 
 .tyre-main-image:hover {
@@ -113,10 +122,11 @@ grid-column: 1/3;
   left: 0;
 }
 .tyre-small-images img {
-  width: 100%;
+  width: 90%;
   height: 170px;
   filter: brightness(90%);
-  box-shadow: 0px 2px rgba(0, 0, 0, 0.513);
+  border-radius: 5px;
+  border: 1px solid rgb(170, 170, 170);
 }
 .tyre-small-images img:hover {
   cursor: pointer;
@@ -153,6 +163,15 @@ grid-column: 1/3;
     margin: 0;
     padding: 0;
   }
+  .tyre-parameter h1 {
+    grid-column: 1/3;
+    border-bottom: 0px solid orange;
+  }
+  .tyre-parameter h3 {
+    color: rgb(20, 20, 20);
+    font-size: 1.1rem;
+    border-bottom: 0px solid orange;
+  }
 }
 @media (max-width: 350px) {
   .tyre-small-images {
@@ -176,3 +195,4 @@ grid-column: 1/3;
     width: 100%;
   }
 }
+

@@ -77,6 +77,7 @@ const UpdateTyre = () => {
           name: formState.name,
           description: formState.description,
           price: formState.price,
+          year: formState.year,
         }),
         {
           authorization: `Bearer ${auth.token}`,
@@ -108,6 +109,14 @@ const UpdateTyre = () => {
           element='text'
           onInput={onInput}
         />
+        <h2>Rok produkcji</h2>
+
+        <Input
+          id='year'
+          def={loadedTyre ? loadedTyre.year : ""}
+          element='text'
+          onInput={onInput}
+        />
         <h2>Opis</h2>
         <Input
           id='description'
@@ -124,3 +133,4 @@ const UpdateTyre = () => {
 };
 
 export default UpdateTyre;
+

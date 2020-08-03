@@ -47,9 +47,7 @@ const TyreInfo = () => {
         {},
         { authorization: `Bearer ${auth.token}` }
       );
-    } catch (err) {
-      alert(err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {
@@ -59,9 +57,7 @@ const TyreInfo = () => {
           `${process.env.REACT_APP_API_URL}/api/tyres/${tid}`
         );
         setData(data.tyre);
-      } catch (err) {
-        alert(err);
-      }
+      } catch (err) {}
     };
     func();
   }, [tid]);
@@ -107,19 +103,24 @@ const TyreInfo = () => {
                       key={index}
                     />
                   ))}
-                {auth.role === "admin" && (
-                  <button className='btn' onClick={() => setErrorModal(true)}>
-                    Usuń
-                  </button>
-                )}
-                {auth.role === "admin" && (
-                  <Link to={`/tyres/update/${tid}`}>
-                    <div className='btn edit'>Edytuj</div>
-                  </Link>
-                )}
-               <div className="orderius"> <Link to={`/order/${tid}`}>
-                  <div className='btn edit'>Zamów</div>
-                </Link></div>
+                <div className='buttons-info'>
+                  {auth.role === "admin" && (
+                    <button className='btn' onClick={() => setErrorModal(true)}>
+                      Usuń
+                    </button>
+                  )}
+                  {auth.role === "admin" && (
+                    <Link to={`/tyres/update/${tid}`}>
+                      <div className='btn edit'>Edytuj</div>
+                    </Link>
+                  )}
+                  <div className='orderius'>
+                    {" "}
+                    <Link to={`/order/${tid}`}>
+                      <div className='btn edit'>Zamów</div>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
             <div className='tyre-specs'>
@@ -143,7 +144,7 @@ const TyreInfo = () => {
               </div>
               <div className='tyre-parameter'>
                 <h3>Cena:</h3>
-                <p>{data.price} PLN</p>
+                <p>{data.price} zŁ</p>
               </div>
 
               <div className='desc'>
@@ -159,3 +160,4 @@ const TyreInfo = () => {
   );
 };
 export default TyreInfo;
+

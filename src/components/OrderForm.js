@@ -12,6 +12,7 @@ import { useHistory, useParams } from "react-router-dom";
 import AuthContext from "../context/auth-context";
 import ModalInfo from "./ModalInfo";
 import ReCaptcha from "react-google-recaptcha";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const myReducer = (state, action) => {
   switch (action.type) {
@@ -43,6 +44,7 @@ const OrderForm = () => {
   const [data, setData] = useState();
   const [totalPrice, setTotalPrice] = useState();
   const [userValid, setUserValid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
   const auth = useContext(AuthContext);
   const [error, setError] = useState(false);
@@ -68,9 +70,7 @@ const OrderForm = () => {
           `${process.env.REACT_APP_API_URL}/api/tyres/${tid}`
         );
         setData(data.tyre);
-      } catch (err) {
-        alert(err);
-      }
+      } catch (err) {}
     };
     func();
   }, [tid]);
@@ -79,6 +79,8 @@ const OrderForm = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+
     try {
       const data = await sendRequest(
         `${process.env.REACT_APP_API_URL}/api/order/${tid}`,
@@ -97,8 +99,10 @@ const OrderForm = () => {
         { "Content-Type": "application/json" }
       );
       setSuccess(true);
+      setIsLoading(false);
     } catch (err) {
       setError(err);
+      setIsLoading(false);
     }
   };
   return (
@@ -144,12 +148,7 @@ const OrderForm = () => {
           onInput={onInput}
         />
         <h2>Imie i nazwisko</h2>
-        <Input
-          id='imieinazwisko'
-          element='text'
-          rows='5'
-          onInput={onInput}
-        />
+        <Input id='imieinazwisko' element='text' rows='5' onInput={onInput} />
         <h2>Dane adresowe</h2>
         <Input id='adres' element='text' rows='5' onInput={onInput} />
         <h2>Kod pocztowy</h2>
@@ -169,6 +168,7 @@ const OrderForm = () => {
           onChange={handleCaptcha}
           hl='pl'
         />
+        {isLoading && <AiOutlineLoading3Quarters className='spinner' />}
         <div className='btn-div'>
           <button className='btn'>Złóż zamówienie</button>
         </div>

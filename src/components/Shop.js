@@ -36,9 +36,11 @@ const Shop = () => {
   const [searchState, dispatch] = useReducer(myReducer, {});
   const [page, setPage] = useState(1);
   const [nextPage, setNextPage] = useState();
+  const [uncheckAll, setUncheckAll] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setPage(1);
     console.log(searchState);
     try {
       const response = await sendRequest(
@@ -49,7 +51,6 @@ const Shop = () => {
       );
       setNextPage(nextPage.tyres);
       setTyres(response.tyres);
-      setPage(1);
     } catch (err) {}
   };
   const onInput = useCallback((id, value) => {
@@ -64,35 +65,11 @@ const Shop = () => {
     const func = async () => {
       try {
         setTyres(null);
-        startResponse = await sendRequest(
-          `${process.env.REACT_APP_API_URL}/api/tyres?profil=${searchState.profil}&sezon=${searchState.sezon}&szerokosc=${searchState.szerokosc}&type=${searchState.type}&srednica=${searchState.srednica}&clas=${searchState.rodzaj}&sorty=${searchState.sorty}&page=1`
-        );
-        startNextPage = await sendRequest(
-          `${process.env.REACT_APP_API_URL}/api/tyres?profil=${searchState.profil}&sezon=${searchState.sezon}&szerokosc=${searchState.szerokosc}&type=${searchState.type}&srednica=${searchState.srednica}&clas=${searchState.rodzaj}&sorty=${searchState.sorty}&page=2`
-        );
-        setNextPage(startNextPage.tyres);
-        setTyres(startResponse.tyres);
-      } catch (err) {}
-    };
-
-    func();
-  }, []);
-
-  useEffect(() => {
-    const func = async () => {
-      try {
-        setTyres(null);
         const response = await sendRequest(
-          `${process.env.REACT_APP_API_URL}/api/tyres?profil=${searchState.profil}&sezon=${searchState.sezon}&szerokosc=${searchState.szerokosc}&type=${searchState.type}&srednica=${searchState.srednica}&clas=${searchState.rodzaj}&sorty=${searchState.sorty}&page=${page}`
+          `${process.env.REACT_APP_API_URL}/api/tyres?page=1`
         );
         const nextPage = await sendRequest(
-          `${process.env.REACT_APP_API_URL}/api/tyres?profil=${
-            searchState.profil
-          }&sezon=${searchState.sezon}&szerokosc=${
-            searchState.szerokosc
-          }&type=${searchState.type}&srednica=${searchState.srednica}&clas=${
-            searchState.rodzaj
-          }&sorty=${searchState.sorty}&page=${page + 1}`
+          `${process.env.REACT_APP_API_URL}/api/tyres?page=2`
         );
         setNextPage(nextPage.tyres);
         setTyres(response.tyres);
@@ -100,7 +77,28 @@ const Shop = () => {
     };
 
     func();
-  }, [page]);
+  }, []);
+
+  const func = async (page) => {
+    try {
+      setTyres(null);
+      const response = await sendRequest(
+        `${process.env.REACT_APP_API_URL}/api/tyres?profil=${searchState.profil}&sezon=${searchState.sezon}&szerokosc=${searchState.szerokosc}&type=${searchState.type}&srednica=${searchState.srednica}&clas=${searchState.rodzaj}&sorty=${searchState.sorty}&page=${page}`
+      );
+      const nextPage = await sendRequest(
+        `${process.env.REACT_APP_API_URL}/api/tyres?profil=${
+          searchState.profil
+        }&sezon=${searchState.sezon}&szerokosc=${searchState.szerokosc}&type=${
+          searchState.type
+        }&srednica=${searchState.srednica}&clas=${searchState.rodzaj}&sorty=${
+          searchState.sorty
+        }&page=${page + 1}`
+      );
+      setNextPage(nextPage.tyres);
+      setTyres(response.tyres);
+    } catch (err) {}
+  };
+
   return (
     <div className='shop-content'>
       <form className='form-filter' onSubmit={handleSubmit}>
@@ -162,7 +160,7 @@ const Shop = () => {
             element='select'
             options={[
               "10.5",
-              "12,5",
+              "12.5",
               "35",
               "40",
               "45",
@@ -248,16 +246,8 @@ const Shop = () => {
         <div>
           <button
             className='btn'
-            onClick={async () => {
-              setTyres(null);
-              const response = await sendRequest(
-                `${process.env.REACT_APP_API_URL}/api/tyres?page=1`
-              );
-              const nextPage = await sendRequest(
-                `${process.env.REACT_APP_API_URL}/api/tyres?page=2`
-              );
-              setNextPage(nextPage.tyres);
-              setTyres(response.tyres);
+            onClick={async (e) => {
+              window.location.reload();
             }}
           >
             Resetuj Filtry
@@ -275,7 +265,7 @@ const Shop = () => {
                 alt='sraka'
               />
               <div className='price-button'>
-                <p>{el.price}.00 PLN</p>
+                <p>{el.price}.00 ZŁ</p>
                 <Link to={`/tyres/${el._id}`}>
                   <button className='btn'> Sprawdz </button>
                 </Link>
@@ -287,13 +277,19 @@ const Shop = () => {
         {page > 1 && (
           <button
             className='btn left'
-            onClick={() => setPage(page - 1)}
+            onClick={() => {
+              func(page - 1);
+              setPage(page - 1);
+            }}
           ></button>
         )}
         {nextPage && nextPage.length !== 0 && (
           <button
             className='btn right'
-            onClick={() => setPage(page + 1)}
+            onClick={() => {
+              func(page + 1);
+              setPage(page + 1);
+            }}
           ></button>
         )}
       </div>
