@@ -12,10 +12,10 @@ const ModalInfo = (props) => {
       mountOnEnter
       unmountOnExit
     >
-      <div className='modal-info'>
+      <div className={`modal-info ${props.classer}`}>
         <h1>{props.children}</h1>
 
-        <div className='modal-options'>
+        <div className={props.btn ? `${props.btn}` : `btn`}>
           <button className='btn' onClick={() => props.onCancel()}>
             OK
           </button>

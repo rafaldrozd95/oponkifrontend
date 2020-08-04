@@ -70,6 +70,8 @@ const App = () => {
         >
           <Router>
             <ModalInfo
+              btn='cookie-btn'
+              classer='cookie-modal'
               show={cookies}
               onCancel={() => {
                 setCookies(false);

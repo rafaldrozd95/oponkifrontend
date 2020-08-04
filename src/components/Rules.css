@@ -1,15 +1,16 @@
-.policy h1 {
+.rules h1,
+.rules h2 {
   margin-bottom: 20px;
 }
-.policy h2 {
+.rules h4 {
   margin-top: 10px;
   margin-bottom: 20px;
 }
-.policy h5 {
+.rules h5 {
   font-size: 1rem;
   margin-left: 20px;
 }
-.policy h6 {
+.rules h6 {
   font-size: 0.9rem;
   color: orange;
   margin-left: 30px;
