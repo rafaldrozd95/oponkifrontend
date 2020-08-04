@@ -76,7 +76,8 @@ const TyreInfo = () => {
         <React.Fragment>
           <Modal
             show={handleModal}
-            image={`${process.env.REACT_APP_API_URL}/${data.image[imageNumber]}`}
+            image={data.image}
+            number={imageNumber}
             onCancel={cancelModal}
           ></Modal>
           <div className='tyre-info'>
@@ -124,6 +125,12 @@ const TyreInfo = () => {
               </div>
             </div>
             <div className='tyre-specs'>
+              <div className='producent-image'>
+                <img
+                  src={`${process.env.REACT_APP_API_URL}/${data.producent}`}
+                  alt='sopona'
+                />
+              </div>
               <div className='tyre-parameter'>
                 <h1>{data.name}</h1>
               </div>
@@ -160,4 +167,3 @@ const TyreInfo = () => {
   );
 };
 export default TyreInfo;
-

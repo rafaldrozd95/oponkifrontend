@@ -18,6 +18,7 @@ import UpdateTyre from "./components/UpdateTyre";
 import Contatct from "./components/Contact";
 import OrderForm from "./components/OrderForm";
 import ShowOrders from "./components/ShowOrders";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 const App = () => {
   const [token, setToken] = useState();
@@ -85,6 +86,9 @@ const App = () => {
             </Route>
             <Route path='/tyres/update/:tid' exact>
               <UpdateTyre />
+            </Route>
+            <Route path='/privacyPolicy'>
+              <PrivacyPolicy />
             </Route>
 
             <Redirect to='/' />

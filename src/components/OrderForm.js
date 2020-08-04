@@ -114,6 +114,8 @@ const OrderForm = () => {
         show={success}
         onCancel={() => {
           setSuccess(false);
+          window.open(`http://www.google.pl`);
+
           history.push("/");
         }}
       >
@@ -178,4 +180,3 @@ const OrderForm = () => {
 };
 
 export default OrderForm;
-

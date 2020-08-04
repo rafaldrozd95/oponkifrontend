@@ -7,11 +7,50 @@
   left: 30%;
   z-index: 100;
 }
+.arrow {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: 100%;
+}
+.arrow-content {
+  display: flex;
+  justify-content: space-between;
+}
+.arrow-child {
+  width: 5rem;
+  height: 5rem;
+  color: rgba(255, 72, 0, 0.733);
+  background: rgba(128, 123, 123, 0.431);
+}
+.ex {
+  position: absolute;
+  color: rgba(255, 72, 0, 0.733);
+
+  top: 0;
+  right: 0;
+  margin: 20px;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+}
+.ex:hover {
+  background: rgba(128, 123, 123, 0.431);
+}
+.arrow-child:hover {
+  color: rgba(255, 251, 0, 0.808);
+}
 .modal img {
   width: 100%;
   height: 100%;
 }
 @media (max-width: 768px) {
+  .arrow-child:hover {
+    color: rgba(255, 72, 0, 0.733);
+  }
+  .ex {
+    margin: 0;
+  }
   .modal {
     width: 100%;
     left: 0%;

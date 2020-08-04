@@ -61,6 +61,8 @@ const UploadTyre = () => {
       formData.append("clas", formState.clas);
       formData.append("description", formState.description);
       formData.append("imageCover", formState.imageCover[0]);
+      formData.append("producent", formState.producent[0]);
+
       for (let i = 0; i < formState.image["length"]; i++) {
         formData.append("image", formState.image[i]);
       }
@@ -182,6 +184,13 @@ const UploadTyre = () => {
         <h2>Okladka</h2>
 
         <ImageInput namiusz='Dodaj okladke' id='imageCover' onInput={onInput} />
+        <h2>Logo Producenta</h2>
+
+        <ImageInput
+          namiusz='Dodaj logo producenta'
+          id='producent'
+          onInput={onInput}
+        />
         <div className='btn-div'>
           <button className='btn'>Dodaj opone</button>
         </div>

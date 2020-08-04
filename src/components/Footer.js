@@ -10,6 +10,9 @@ const Footer = () => {
       </div>
       <ul>
         <li>
+          <Link to='/privacyPolicy'>Polityka Prywatności</Link>
+        </li>
+        <li>
           <a target='_blank' href='https://www.facebook.com/JANDJanDrozd/'>
             <AiFillFacebook size='2.5rem' color='black' />
           </a>
