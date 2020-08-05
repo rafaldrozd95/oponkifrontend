@@ -6,26 +6,27 @@ const Rules = () => {
       <h1>Regulamin sprzedaży</h1>
       <h2>1. Definicje</h2>
       <h4>
-        Na potrzeby niniejszego Regulaminu, który stanowi ogólne warunki umów
-        sprzedaży (dalej: OWU) wprowadza się definicje następujących pojęć w nim
-        użytych: - „Sprzedawca” – JAND Jan Drozd ul. Borkowska 48A 39-120
-        Sędziszów Młp. - „Kupujący” – każdorazowy klient (konsument albo
-        kontrahent nie będący konsumentem w rozumieniu przepisów Kodeksu
-        cywilnego dalej k.c.) nabywający Towary. Jeżeli w postanowieniach
-        Regulaminu nie zastrzeżono inaczej, to termin Kupujący oznacza
-        konsumenta albo kontrahenta nie będącego konsumentem. - „Towary” –
-        produkty z branży opony samochodoweznajdujące się w Ofercie; - „Oferta”
-        – towary wystawione na sprzedaż w sklepie, w obowiązującym katalogu,
-        cenniku, z oznaczoną ceną i nazwą produktu; - „Regulamin” – niniejszy
-        dokument obowiązujący u Sprzedawcy, - „Strony” - łącznie Sprzedawca i
-        Kupujący. Regulamin jako OWU wiąże kupującego, jeżeli został mu
-        doręczony przed zawarciem umowy, a jako regulacja wewnętrzna wiąże
-        pracowników Sprzedawcy i Sprzedawcę co do zasad postępowania przy
-        sprzedaży. W razie gdy posługiwanie się wzorcem umownym jest w
-        stosunkach danego rodzaju zwyczajowo przyjęte, wiąże on także wtedy, gdy
-        Kupujący mógł się z łatwością dowiedzieć o jego treści. Nie dotyczy to
-        jednak umów zawieranych z udziałem konsumentów, z wyjątkiem umów
-        powszechnie zawieranych w drobnych, bieżących sprawach życia codziennego
+        NIP: 8181006386 REGON: 180382542 Na potrzeby niniejszego Regulaminu,
+        który stanowi ogólne warunki umów sprzedaży (dalej: OWU) wprowadza się
+        definicje następujących pojęć w nim użytych: - „Sprzedawca” – JAND Jan
+        Drozd ul. Borkowska 48A 39-120 Sędziszów Młp. NIP: 8181006386 REGON:
+        180382542 - „Kupujący” – każdorazowy klient (konsument albo kontrahent
+        nie będący konsumentem w rozumieniu przepisów Kodeksu cywilnego dalej
+        k.c.) nabywający Towary. Jeżeli w postanowieniach Regulaminu nie
+        zastrzeżono inaczej, to termin Kupujący oznacza konsumenta albo
+        kontrahenta nie będącego konsumentem. - „Towary” – produkty z branży
+        opony samochodoweznajdujące się w Ofercie; - „Oferta” – towary
+        wystawione na sprzedaż w sklepie, w obowiązującym katalogu, cenniku, z
+        oznaczoną ceną i nazwą produktu; - „Regulamin” – niniejszy dokument
+        obowiązujący u Sprzedawcy, - „Strony” - łącznie Sprzedawca i Kupujący.
+        Regulamin jako OWU wiąże kupującego, jeżeli został mu doręczony przed
+        zawarciem umowy, a jako regulacja wewnętrzna wiąże pracowników
+        Sprzedawcy i Sprzedawcę co do zasad postępowania przy sprzedaży. W razie
+        gdy posługiwanie się wzorcem umownym jest w stosunkach danego rodzaju
+        zwyczajowo przyjęte, wiąże on także wtedy, gdy Kupujący mógł się z
+        łatwością dowiedzieć o jego treści. Nie dotyczy to jednak umów
+        zawieranych z udziałem konsumentów, z wyjątkiem umów powszechnie
+        zawieranych w drobnych, bieżących sprawach życia codziennego
       </h4>
       <h2>2. Zakres Obowiązywania</h2>
       <h4>
@@ -36,10 +37,10 @@ const Rules = () => {
         sprzedaży Towarów w której Strony wyłączyły obowiązywanie niniejszego
         Regulaminu. 2. Sprzedawca udostępnia niniejszy Regulamin na terenie
         sklepu, działu handlowego, punktu obsługi klientów, zakładu JAND Jan
-        Drozd ul. Borkowska 48A 39-120 Sędziszów Młp oraz na stronie
-        internetowej OPONYDROZD.COM w sposób umożliwiający jego pobranie,
-        zachowanie oraz wydrukowanie wraz ze wskazaniem od jakiej daty
-        obowiązuje udostępniona wersja.
+        Drozd ul. Borkowska 48A 39-120 Sędziszów Młp NIP: 8181006386 REGON:
+        180382542 oraz na stronie internetowej OPONYDROZD.COM w sposób
+        umożliwiający jego pobranie, zachowanie oraz wydrukowanie wraz ze
+        wskazaniem od jakiej daty obowiązuje udostępniona wersja.
       </h4>
       <h2>3. Towary</h2>
       <h4>
@@ -363,10 +364,13 @@ const Rules = () => {
         fiskalnego lub w inny sposób wykazać zawarcie umowy sprzedaży, wskazać
         wadę Towaru oraz wskazać sposób rozsztrzygnięcia reklamacji, w
         szczególności domagając się wymiany rzeczy lub usunięcia wady albo
-        złożyć oświadczenie o obniżeniu ceny . 5. Sprzedawca w terminie 14 dni
-        informuje Kupującego o rozstrzygnięciu reklamacji w sposób umożliwiający
-        Kupującemu zapoznanie się z treścią odpowiedzi na reklamację.
+        złożyć oświadczenie o obniżeniu ceny .
       </h4>
+      <h3>
+        10.13. Sprzedawca w terminie 14 dni informuje Kupującego o
+        rozstrzygnięciu reklamacji w sposób umożliwiający Kupującemu zapoznanie
+        się z treścią odpowiedzi na reklamację.
+      </h3>
       <h2>
         11. Poufność w przypadku umów zawieranych z Kupującymi nie będącymi
         konsumentami
@@ -455,7 +459,11 @@ const Rules = () => {
         Regulaminu wraz z załącznikiem nr 1 stanowi wypełnienie obowiązków
         informacyjnych w zakresie o którym mowa w art. 13 ustawy z dnia 30 maja
         2014 r. o prawach konsumenta (Dz. U. 2014 r., poz. 827 ze zm.)
+        <a href='https://www.rzetelnyregulamin.pl/pl/dla-konsumenta/formularz-odstapienia-od-umowy'>
+          Formularz oświadczenia odstąpienia od umowy (Link)
+        </a>
       </h4>
+
       <h5>
         Wygenerowano na podstawie bezpłatnego wzoru z serwisu mikroPorady.pl
         Sfinansowano z 1% podatku w ramach nieodpłatnej działalności pożytku

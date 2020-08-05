@@ -28,4 +28,10 @@
   .container {
     width: 100%;
   }
+  .polityka {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

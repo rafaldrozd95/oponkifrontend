@@ -15,3 +15,8 @@
   color: orange;
   margin-left: 30px;
 }
+.rules a {
+  color: red;
+  font-size: 1rem;
+  margin-left: 5px;
+}

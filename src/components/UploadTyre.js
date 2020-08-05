@@ -44,7 +44,20 @@ const UploadTyre = () => {
   }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formState);
+    const producentId = (e) => {
+      switch (e) {
+        case "Rotalla":
+          return "5f2a5e8f56f94e217cfd2bc3";
+        case "GtRadial":
+          return "5f2a5ea856f94e217cfd2bc5";
+        case "Torque":
+          return "5f2a5eb156f94e217cfd2bc6";
+        case "Equipe":
+          return "5f2a5e9a56f94e217cfd2bc4";
+        default:
+          return;
+      }
+    };
 
     try {
       setError(false);
@@ -58,6 +71,8 @@ const UploadTyre = () => {
       if (formState.image.length > 4) {
         throw new Error("Za duzo zdjec");
       }
+      formData.append("indeks", formState.indeks);
+      formData.append("producent", producentId(formState.producent));
       formData.append("clas", formState.clas);
       formData.append("description", formState.description);
       formData.append("imageCover", formState.imageCover[0]);
@@ -169,6 +184,28 @@ const UploadTyre = () => {
             "80",
             "85",
           ]}
+          onInput={onInput}
+        />
+
+        <h2>Producent</h2>
+        <Input
+          id='producent'
+          element='select'
+          options={[
+            "brak",
+            "U - 200 km/h",
+            "H - 210 km/h",
+            "V - 240 km/h",
+            "W - 270 km/h",
+            "Y - 300 km/h",
+          ]}
+          onInput={onInput}
+        />
+        <h2>Indeks prędkości</h2>
+        <Input
+          id='indeks'
+          element='select'
+          options={["Equipe", "Torque", "GtRadial", "Rotalla"]}
           onInput={onInput}
         />
         <h2>Rok produkcji</h2>

@@ -8,9 +8,15 @@
 .policy h5 {
   font-size: 1rem;
   margin-left: 20px;
+  margin-bottom: 20px;
 }
 .policy h6 {
   font-size: 0.9rem;
-  color: orange;
+  color: black;
+  display: list-item;
+  list-style-type: disc;
+  list-style-position: inside;
+  margin-top: 10px;
+
   margin-left: 30px;
 }

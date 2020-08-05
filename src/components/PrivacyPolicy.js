@@ -17,6 +17,8 @@ const PrivacyPolicy = () => {
         Operatorem serwisu oraz Administratorem danych osobowych jest: Jand Jan
         Drozd Borkowska 48A 39-120 Sędziszów Małopolski
       </h5>{" "}
+      <h5>NIP: 8181006386</h5> <h5>REGON: 180382542</h5>{" "}
+      <h5>NIP: 8181006386 REGON: 180382542</h5>
       <h5>
         Adres kontaktowy poczty elektronicznej operatora: oponybieznik@gmail.com
       </h5>

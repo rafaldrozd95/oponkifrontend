@@ -127,7 +127,7 @@ const TyreInfo = () => {
             <div className='tyre-specs'>
               <div className='producent-image'>
                 <img
-                  src={`${process.env.REACT_APP_API_URL}/${data.producent}`}
+                  src={`${process.env.REACT_APP_API_URL}/${data.producent.image}`}
                   alt='sopona'
                 />
               </div>
