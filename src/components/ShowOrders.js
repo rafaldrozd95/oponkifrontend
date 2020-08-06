@@ -40,17 +40,26 @@ const ShowOrders = () => {
   const [nextPage, setNextPage] = useState();
   const [realised, setRealised] = useState();
 
+  useEffect(() => {}, []);
   useEffect(() => {
     const func = async () => {
+      const storedData = JSON.parse(localStorage.getItem("userData"));
+
       try {
+        setError(false);
         const response = await sendRequest(
-          `${process.env.REACT_APP_API_URL}/api/order`
+          `${process.env.REACT_APP_API_URL}/api/order`,
+          "GET",
+          null,
+          {
+            authorization: `Bearer ${storedData.token}`,
+          }
         );
-        const nextPage = await sendRequest(
-          `${process.env.REACT_APP_API_URL}/api/order`
-        );
+
         setData(response.orders);
-      } catch (err) {}
+      } catch (err) {
+        setError(err.message);
+      }
     };
 
     func();
@@ -135,6 +144,11 @@ const ShowOrders = () => {
               </h4>
               <h4>Cena za sztukę: {el.opona.price}.00PLN</h4>
               <h4>Liczba sztuk: {el.ile}</h4>
+              <h4>
+                Rodzaj zapłaty:{" "}
+                {el.dostawa === "P24" ? "Płatność z przelewy24" : el.dostawa}
+              </h4>
+
               <h4>Cena za całość: {el.ile * el.opona.price}.00PLN</h4>
               <h3> Imie i Nazwisko: {el.imieinazwisko} </h3>
               <h3>
@@ -143,6 +157,9 @@ const ShowOrders = () => {
               <h3>Telefon: {el.phone}</h3>
               <h3>Email: {el.email}</h3>
               {el.relised && <h3 style={{ color: "green" }}>Zrealizowane</h3>}
+              {el.oplacone && (
+                <h3 style={{ color: "green" }}>Oplacone na P24</h3>
+              )}
               <div className='buttons'>
                 <button
                   className='btn'
@@ -178,4 +195,3 @@ const ShowOrders = () => {
 };
 
 export default ShowOrders;
-

@@ -41,6 +41,8 @@ const sendRequest = async (url, method = "GET", body = null, headers = {}) => {
 const OrderForm = () => {
   const tid = useParams().tid;
   const [success, setSuccess] = useState();
+  const [token, setToken] = useState();
+
   const [data, setData] = useState();
   const [totalPrice, setTotalPrice] = useState();
   const [userValid, setUserValid] = useState(false);
@@ -77,10 +79,14 @@ const OrderForm = () => {
   const handleCaptcha = async (e) => {
     setUserValid(true);
   };
+  const MAP = {
+    "Płatność z przelewy24": "P24",
+    "Kurierska pobraniowa GLS": "Kurierska pobraniowa GLS",
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-
     try {
       const data = await sendRequest(
         `${process.env.REACT_APP_API_URL}/api/order/${tid}`,
@@ -88,7 +94,7 @@ const OrderForm = () => {
         JSON.stringify({
           adres: formState.adres,
           city: formState.city,
-          dostawa: formState.dostawa,
+          dostawa: MAP[formState.dostawa],
           email: formState.email,
           ile: formState.ile,
           phone: formState.phone,
@@ -100,6 +106,7 @@ const OrderForm = () => {
       );
       setSuccess(true);
       setIsLoading(false);
+      setToken(data.url);
     } catch (err) {
       setError(err);
       setIsLoading(false);
@@ -114,13 +121,15 @@ const OrderForm = () => {
         show={success}
         onCancel={() => {
           setSuccess(false);
-          window.open(`http://www.google.pl`);
-
+          if (token) window.open(token);
           history.push("/");
         }}
       >
         Zamówienie przyjęte do realizacji. Wszystkie szczegóły otrzyma Pan/i na
-        podany adres email.
+        podany adres email.{" "}
+        {token && (
+          <p>Po naciśnięciu OK zostaniesz przeniesiony/a do płatności.</p>
+        )}
       </ModalInfo>
 
       <div>
@@ -139,7 +148,7 @@ const OrderForm = () => {
         <Input
           id='dostawa'
           element='select'
-          options={["Kurierska pobraniowa GLS"]}
+          options={["Kurierska pobraniowa GLS", "Płatność z przelewy24"]}
           onInput={onInput}
         />
         <h2>Ilość sztuk</h2>
