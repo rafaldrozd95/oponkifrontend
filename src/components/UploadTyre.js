@@ -44,20 +44,14 @@ const UploadTyre = () => {
   }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const producentId = (e) => {
-      switch (e) {
-        case "Rotalla":
-          return "5f2a5e8f56f94e217cfd2bc3";
-        case "GtRadial":
-          return "5f2a5ea856f94e217cfd2bc5";
-        case "Torque":
-          return "5f2a5eb156f94e217cfd2bc6";
-        case "Equipe":
-          return "5f2a5e9a56f94e217cfd2bc4";
-        default:
-          return;
-      }
+
+    const PRODUCENT_MAP = {
+      Torque: "5f2a5eb156f94e217cfd2bc6",
+      Equipe: "5f2a5e9a56f94e217cfd2bc4",
+      GtRadial: "5f2a5ea856f94e217cfd2bc5",
+      Rotalla: "5f2a5e8f56f94e217cfd2bc3",
     };
+    console.log(formState);
 
     try {
       setError(false);
@@ -72,7 +66,7 @@ const UploadTyre = () => {
         throw new Error("Za duzo zdjec");
       }
       formData.append("indeks", formState.indeks);
-      formData.append("producent", producentId(formState.producent));
+      formData.append("producent", PRODUCENT_MAP[formState.producent]);
       formData.append("clas", formState.clas);
       formData.append("description", formState.description);
       formData.append("imageCover", formState.imageCover[0]);
@@ -187,9 +181,9 @@ const UploadTyre = () => {
           onInput={onInput}
         />
 
-        <h2>Producent</h2>
+        <h2>Indeks Prędkości</h2>
         <Input
-          id='producent'
+          id='indeks'
           element='select'
           options={[
             "brak",
@@ -201,9 +195,9 @@ const UploadTyre = () => {
           ]}
           onInput={onInput}
         />
-        <h2>Indeks prędkości</h2>
+        <h2>Producent</h2>
         <Input
-          id='indeks'
+          id='producent'
           element='select'
           options={["Equipe", "Torque", "GtRadial", "Rotalla"]}
           onInput={onInput}
@@ -221,13 +215,7 @@ const UploadTyre = () => {
         <h2>Okladka</h2>
 
         <ImageInput namiusz='Dodaj okladke' id='imageCover' onInput={onInput} />
-        <h2>Logo Producenta</h2>
 
-        <ImageInput
-          namiusz='Dodaj logo producenta'
-          id='producent'
-          onInput={onInput}
-        />
         <div className='btn-div'>
           <button className='btn'>Dodaj opone</button>
         </div>
@@ -237,3 +225,4 @@ const UploadTyre = () => {
 };
 
 export default UploadTyre;
+

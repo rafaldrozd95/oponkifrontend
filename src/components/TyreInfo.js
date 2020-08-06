@@ -144,6 +144,12 @@ const TyreInfo = () => {
                   <p>{data.year}</p>
                 </div>
               )}
+              {data.indeks !== "brak" && (
+                <div className='tyre-parameter'>
+                  <h3>Indeks prędkości:</h3>
+                  <p>{data.indeks}</p>
+                </div>
+              )}
 
               <div className='tyre-parameter'>
                 <h3>Przeznaczenie opony:</h3>
@@ -167,3 +173,4 @@ const TyreInfo = () => {
   );
 };
 export default TyreInfo;
+

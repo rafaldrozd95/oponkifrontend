@@ -49,7 +49,7 @@ const App = () => {
     }
   }, [login]);
   useEffect(() => {
-    const cookie = JSON.parse(localStorage.getItem("userData"));
+    const cookie = JSON.parse(localStorage.getItem("cookieData"));
 
     if (cookie && cookie.cookies) {
       setCookies(false);
@@ -76,7 +76,7 @@ const App = () => {
               onCancel={() => {
                 setCookies(false);
                 localStorage.setItem(
-                  "userData",
+                  "cookieData",
                   JSON.stringify({
                     cookies,
                   })
@@ -143,3 +143,4 @@ const App = () => {
 };
 
 export default App;
+

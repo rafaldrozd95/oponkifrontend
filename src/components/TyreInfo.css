@@ -34,8 +34,9 @@
   justify-content: center;
 }
 .producent-image img {
+  width: 60%;
 }
-. .desc {
+.desc {
   width: 60%;
   margin: 20px 40px 30px 20px;
   color: black;
@@ -201,4 +202,8 @@
   .desc {
     width: 100%;
   }
+  .producent-image img {
+    width: 100%;
+  }
 }
+
