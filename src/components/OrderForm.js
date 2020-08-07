@@ -62,7 +62,7 @@ const OrderForm = () => {
 
   useEffect(() => {
     if (data) {
-      setTotalPrice(data.price * formState.ile);
+      setTotalPrice(parseFloat(data.price * formState.ile).toFixed(2));
     }
   }, [data, formState.ile]);
   useEffect(() => {
@@ -104,6 +104,9 @@ const OrderForm = () => {
         }),
         { "Content-Type": "application/json" }
       );
+      if (MAP[formState.dostawa] === "P24" && !data.url) {
+        throw new Error("Cos poszlo nie tak! Nie udalo sie wykonac zamowienia");
+      }
       setSuccess(true);
       setIsLoading(false);
       setToken(data.url);
@@ -144,7 +147,7 @@ const OrderForm = () => {
         )}
       </div>
       <form onSubmit={handleSubmit}>
-        <h2>Rodzaj przesyłki</h2>
+        <h2>Rodzaj płatności</h2>
         <Input
           id='dostawa'
           element='select'
@@ -160,7 +163,7 @@ const OrderForm = () => {
         />
         <h2>Imie i nazwisko</h2>
         <Input id='imieinazwisko' element='text' rows='5' onInput={onInput} />
-        <h2>Dane adresowe</h2>
+        <h2>Ulica i nr domu</h2>
         <Input id='adres' element='text' rows='5' onInput={onInput} />
         <h2>Kod pocztowy</h2>
         <Input id='postal' element='text' rows='5' onInput={onInput} />
@@ -172,7 +175,7 @@ const OrderForm = () => {
         <Input id='phone' element='text' onInput={onInput} />
 
         <h2>Koszt zamówienia: </h2>
-        {formState.ile && <h3> {totalPrice}.00 PLN</h3>}
+        {formState.ile && <h3> {totalPrice} PLN</h3>}
         <ReCaptcha
           ref={captchaRef}
           sitekey='6LcpFv4UAAAAAM0rBSDP5nBwswSbu74WOxmobQf_'

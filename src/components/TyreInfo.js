@@ -6,6 +6,7 @@ import AuthContext from "./../context/auth-context";
 import ModalError from "./ModalError";
 import { useHistory } from "react-router-dom";
 import { AiOutlineZoomIn } from "react-icons/ai";
+import Loading from "./Loading";
 
 const sendRequest = async (url, method = "GET", body = null, headers = {}) => {
   try {
@@ -31,6 +32,7 @@ const TyreInfo = () => {
   const [imageNumber, setImageNumber] = useState(1);
   const [handleModal, setHandleModal] = useState(false);
   const [errorModal, setErrorModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const cancelModal = () => {
     setHandleModal(false);
   };
@@ -53,124 +55,134 @@ const TyreInfo = () => {
   useEffect(() => {
     const func = async () => {
       try {
+        setIsLoading(true);
+
         const data = await sendRequest(
           `${process.env.REACT_APP_API_URL}/api/tyres/${tid}`
         );
         setData(data.tyre);
-      } catch (err) {}
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+      }
     };
     func();
   }, [tid]);
 
   return (
-    <div>
-      <ModalError
-        show={errorModal}
-        handleFunc={deleteItem}
-        onCancel={() => setErrorModal(false)}
-        history={history}
-      >
-        Czy na pewno chcesz usunąć ten produkt?
-      </ModalError>
-      {data && (
-        <React.Fragment>
-          <Modal
-            show={handleModal}
-            image={data.image}
-            number={imageNumber}
-            onCancel={cancelModal}
-          ></Modal>
-          <div className='tyre-info'>
-            <div className='tyre-ttitle'></div>
-            <div className='tyre-images'>
-              <div className='tyre-main-image'>
-                <img
-                  onClick={() => setModal(true)}
-                  src={`${process.env.REACT_APP_API_URL}/${data.image[imageNumber]}`}
-                ></img>
-                <div className='lupa' onClick={() => setModal(true)}>
-                  <AiOutlineZoomIn className='lupka' />
+    <React.Fragment>
+      {isLoading && <Loading />}
+      <div>
+        <ModalError
+          show={errorModal}
+          handleFunc={deleteItem}
+          onCancel={() => setErrorModal(false)}
+          history={history}
+        >
+          Czy na pewno chcesz usunąć ten produkt?
+        </ModalError>
+        {data && !isLoading && (
+          <React.Fragment>
+            <Modal
+              show={handleModal}
+              image={data.image}
+              number={imageNumber}
+              onCancel={cancelModal}
+            ></Modal>
+            <div className='tyre-info'>
+              <div className='tyre-ttitle'></div>
+              <div className='tyre-images'>
+                <div className='tyre-main-image'>
+                  <img
+                    onClick={() => setModal(true)}
+                    src={`${process.env.REACT_APP_API_URL}/${data.image[imageNumber]}`}
+                  ></img>
+                  <div className='lupa' onClick={() => setModal(true)}>
+                    <AiOutlineZoomIn className='lupka' />
+                  </div>
                 </div>
-              </div>
-              <div className='tyre-small-images'>
-                {data &&
-                  data.image.map((el, index) => (
-                    <img
-                      onClick={() => {
-                        setImageNumber(index);
-                      }}
-                      src={`${process.env.REACT_APP_API_URL}/${el}`}
-                      alt='nic'
-                      key={index}
-                    />
-                  ))}
-                <div className='buttons-info'>
-                  {auth.role === "admin" && (
-                    <button className='btn' onClick={() => setErrorModal(true)}>
-                      Usuń
-                    </button>
-                  )}
-                  {auth.role === "admin" && (
-                    <Link to={`/tyres/update/${tid}`}>
-                      <div className='btn edit'>Edytuj</div>
-                    </Link>
-                  )}
-                  <div className='orderius'>
-                    {" "}
-                    <Link to={`/order/${tid}`}>
-                      <div className='btn edit'>Zamów</div>
-                    </Link>
+                <div className='tyre-small-images'>
+                  {data &&
+                    data.image.map((el, index) => (
+                      <img
+                        onClick={() => {
+                          setImageNumber(index);
+                        }}
+                        src={`${process.env.REACT_APP_API_URL}/${el}`}
+                        alt='nic'
+                        key={index}
+                      />
+                    ))}
+                  <div className='buttons-info'>
+                    {auth.role === "admin" && (
+                      <button
+                        className='btn'
+                        onClick={() => setErrorModal(true)}
+                      >
+                        Usuń
+                      </button>
+                    )}
+                    {auth.role === "admin" && (
+                      <Link to={`/tyres/update/${tid}`}>
+                        <div className='btn edit'>Edytuj</div>
+                      </Link>
+                    )}
+                    <div className='orderius'>
+                      {" "}
+                      <Link to={`/order/${tid}`}>
+                        <div className='btn edit'>Zamów</div>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className='tyre-specs'>
-              <div className='producent-image'>
-                <img
-                  src={`${process.env.REACT_APP_API_URL}/${data.producent.image}`}
-                  alt='sopona'
-                />
-              </div>
-              <div className='tyre-parameter'>
-                <h1>{data.name}</h1>
-              </div>
-              <div className='tyre-parameter'>
-                <h3>Rodzaj opony:</h3>
-                <p>{data.type}</p>
-              </div>
-              {data.year !== 0 && (
-                <div className='tyre-parameter'>
-                  <h3>Rok Produkcji:</h3>
-                  <p>{data.year}</p>
+              <div className='tyre-specs'>
+                <div className='producent-image'>
+                  <img
+                    src={`${process.env.REACT_APP_API_URL}/${data.producent.image}`}
+                    alt='sopona'
+                  />
                 </div>
-              )}
-              {data.indeks !== "brak" && (
                 <div className='tyre-parameter'>
-                  <h3>Indeks prędkości:</h3>
-                  <p>{data.indeks}</p>
+                  <h1>{data.name}</h1>
                 </div>
-              )}
+                <div className='tyre-parameter'>
+                  <h3>Rodzaj opony:</h3>
+                  <p>{data.type}</p>
+                </div>
+                {data.year !== 0 && (
+                  <div className='tyre-parameter'>
+                    <h3>Rok Produkcji:</h3>
+                    <p>{data.year}</p>
+                  </div>
+                )}
+                {data.indeks !== "brak" && (
+                  <div className='tyre-parameter'>
+                    <h3>Indeks prędkości:</h3>
+                    <p>{data.indeks}</p>
+                  </div>
+                )}
 
-              <div className='tyre-parameter'>
-                <h3>Przeznaczenie opony:</h3>
-                <p>{data.clas}</p>
-              </div>
-              <div className='tyre-parameter'>
-                <h3>Cena:</h3>
-                <p>{data.price} zŁ</p>
-              </div>
+                <div className='tyre-parameter'>
+                  <h3>Przeznaczenie opony:</h3>
+                  <p>{data.clas}</p>
+                </div>
+                <div className='tyre-parameter'>
+                  <h3>Cena:</h3>
+                  <p>{data.price.toFixed(2)} zŁ</p>
+                </div>
 
-              <div className='desc'>
-                <p>{data.description}</p>
-              </div>
+                <div className='desc'>
+                  <p>{data.description}</p>
+                </div>
 
-              <div className='tyre-shadow'></div>
+                <div className='tyre-shadow'></div>
+              </div>
             </div>
-          </div>
-        </React.Fragment>
-      )}
-    </div>
+          </React.Fragment>
+        )}
+      </div>
+    </React.Fragment>
   );
 };
 export default TyreInfo;
-

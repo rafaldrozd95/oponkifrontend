@@ -16,6 +16,26 @@
 
   margin: auto;
 }
+.page-set {
+  grid-column: 2/3;
+  display: flex;
+  justify-content: center;
+}
+.page-set .btn {
+  margin: 10px;
+  display: block;
+  width: 80px;
+  height: 40px;
+}
+.page-set .left::after {
+  content: "<";
+  font-size: 20px;
+}
+.page-set .right::after {
+  font-size: 20px;
+
+  content: ">";
+}
 .buttons {
   padding: 20px;
   grid-gap: 4px;
@@ -45,4 +65,3 @@
     width: 300px;
   }
 }
-

@@ -180,6 +180,9 @@
     font-size: 1.1rem;
     border-bottom: 0px solid orange;
   }
+  .producent-image img {
+    width: 100%;
+  }
 }
 @media (max-width: 350px) {
   .tyre-small-images {
@@ -206,4 +209,3 @@
     width: 100%;
   }
 }
-

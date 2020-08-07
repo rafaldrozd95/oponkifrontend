@@ -3,6 +3,7 @@ import CheckedBox from "./CheckedBox";
 import "./Shop.css";
 import { Link } from "react-router-dom";
 import Input from "./Input";
+import Loading from "./Loading";
 
 const sendRequest = async (url, method = "GET", body = null, headers = {}) => {
   try {
@@ -36,13 +37,13 @@ const Shop = () => {
   const [searchState, dispatch] = useReducer(myReducer, {});
   const [page, setPage] = useState(1);
   const [nextPage, setNextPage] = useState();
-  const [uncheckAll, setUncheckAll] = useState();
-
+  const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setPage(1);
     console.log(searchState);
     try {
+      setIsLoading(true);
       const response = await sendRequest(
         `${process.env.REACT_APP_API_URL}/api/tyres?profil=${searchState.profil}&sezon=${searchState.sezon}&szerokosc=${searchState.szerokosc}&type=${searchState.type}&srednica=${searchState.srednica}&clas=${searchState.rodzaj}&sorty=${searchState.sorty}&page=1`
       );
@@ -51,7 +52,10 @@ const Shop = () => {
       );
       setNextPage(nextPage.tyres);
       setTyres(response.tyres);
-    } catch (err) {}
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+    }
   };
   const onInput = useCallback((id, value) => {
     dispatch({
@@ -65,6 +69,8 @@ const Shop = () => {
     const func = async () => {
       try {
         setTyres(null);
+        setIsLoading(true);
+
         const response = await sendRequest(
           `${process.env.REACT_APP_API_URL}/api/tyres?page=1`
         );
@@ -73,7 +79,10 @@ const Shop = () => {
         );
         setNextPage(nextPage.tyres);
         setTyres(response.tyres);
-      } catch (err) {}
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+      }
     };
 
     func();
@@ -82,6 +91,8 @@ const Shop = () => {
   const func = async (page) => {
     try {
       setTyres(null);
+      setIsLoading(true);
+
       const response = await sendRequest(
         `${process.env.REACT_APP_API_URL}/api/tyres?profil=${searchState.profil}&sezon=${searchState.sezon}&szerokosc=${searchState.szerokosc}&type=${searchState.type}&srednica=${searchState.srednica}&clas=${searchState.rodzaj}&sorty=${searchState.sorty}&page=${page}`
       );
@@ -96,206 +107,213 @@ const Shop = () => {
       );
       setNextPage(nextPage.tyres);
       setTyres(response.tyres);
-    } catch (err) {}
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div className='shop-content'>
-      <form className='form-filter' onSubmit={handleSubmit}>
-        <div className='choice-box'>
-          <h2>Typ opony</h2>
-          <CheckedBox
-            name='type'
-            id='nowa'
-            tytul='Nowa'
-            onInput={onInput}
-            state={searchState}
-          ></CheckedBox>
-          <CheckedBox
-            name='type'
-            tytul='Bieżnikowana'
-            id='bieznikowana'
-            onInput={onInput}
-            state={searchState}
-          ></CheckedBox>
-        </div>
-        <div className='choice-box'>
-          <h2>Średnica Opony</h2>
-          <Input
-            id='srednica'
-            element='select'
-            options={["13", "14", "15", "16", "17"]}
-            onInput={onInput}
-          />
-        </div>
-        <div className='choice-box'>
-          <h2>Szerokość Opony</h2>
-          <Input
-            id='szerokosc'
-            element='select'
-            options={[
-              "135",
-              "145",
-              "155",
-              "165",
-              "175",
-              "185",
-              "195",
-              "205",
-              "215",
-              "225",
-              "235",
-              "245",
-              "255",
-              "31",
-              "33",
-            ]}
-            onInput={onInput}
-          />
-        </div>
-        <div className='choice-box'>
-          <h2>Profil Opony</h2>
-          <Input
-            id='profil'
-            element='select'
-            options={[
-              "10.5",
-              "12.5",
-              "35",
-              "40",
-              "45",
-              "50",
-              "55",
-              "60",
-              "65",
-              "70",
-              "75",
-              "80",
-              "85",
-            ]}
-            onInput={onInput}
-          />
-        </div>
-        <div className='choice-box'>
-          <h2>Rodzaj Opony</h2>
-          <CheckedBox
-            name='rodzaj'
-            tytul='Samochodowa'
-            id='samochodowa'
-            onInput={onInput}
-            state={searchState}
-          ></CheckedBox>
-          <CheckedBox
-            name='rodzaj'
-            id='terenowa'
-            tytul='Terenowa'
-            onInput={onInput}
-            state={searchState}
-          ></CheckedBox>
-          <CheckedBox
-            name='rodzaj'
-            id='wzmacniana'
-            tytul='Wzmacniana'
-            onInput={onInput}
-            state={searchState}
-          ></CheckedBox>
-        </div>
-        <div className='choice-box'>
-          <h2>Sezon</h2>
-          <CheckedBox
-            name='sezon'
-            tytul='Lato'
-            id='lato'
-            onInput={onInput}
-            state={searchState}
-          ></CheckedBox>
-          <CheckedBox
-            name='sezon'
-            id='zima'
-            tytul='Zima'
-            onInput={onInput}
-            state={searchState}
-          ></CheckedBox>
-          <CheckedBox
-            name='sezon'
-            id='allseason'
-            tytul='All Season'
-            onInput={onInput}
-            state={searchState}
-          ></CheckedBox>
-        </div>
-        <div className='choice-box'>
-          <h2>Sortuj</h2>
-          <CheckedBox
-            name='sorty'
-            tytul='Cena - rosnąco'
-            id='up'
-            onInput={onInput}
-            state={searchState}
-          ></CheckedBox>
-          <CheckedBox
-            name='sorty'
-            id='down'
-            tytul='Cena - malejąco'
-            onInput={onInput}
-            state={searchState}
-          ></CheckedBox>
-        </div>
-
-        <button className='btn'>Filtruj</button>
-        <div>
-          <button
-            className='btn'
-            onClick={async (e) => {
-              window.location.reload();
-            }}
-          >
-            Resetuj Filtry
-          </button>
-        </div>
-      </form>
-
-      <div className='search-result'>
-        {tyres &&
-          tyres.map((el, index) => (
-            <div className='tyre-item' key={index}>
-              <h2>{el.name}</h2>
-              <img
-                src={`${process.env.REACT_APP_API_URL}/${el.imageCover}`}
-                alt='sraka'
-              />
-              <div className='price-button'>
-                <p>{el.price}.00 ZŁ</p>
-                <Link to={`/tyres/${el._id}`}>
-                  <button className='btn'> Sprawdz </button>
-                </Link>
-              </div>
+    <React.Fragment>
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <div className='shop-content'>
+          <form className='form-filter' onSubmit={handleSubmit}>
+            <div className='choice-box'>
+              <h2>Typ opony</h2>
+              <CheckedBox
+                name='type'
+                id='nowa'
+                tytul='Nowa'
+                onInput={onInput}
+                state={searchState}
+              ></CheckedBox>
+              <CheckedBox
+                name='type'
+                tytul='Bieżnikowana'
+                id='bieznikowana'
+                onInput={onInput}
+                state={searchState}
+              ></CheckedBox>
             </div>
-          ))}
-      </div>
-      <div className='page-set'>
-        {page > 1 && (
-          <button
-            className='btn left'
-            onClick={() => {
-              func(page - 1);
-              setPage(page - 1);
-            }}
-          ></button>
-        )}
-        {nextPage && nextPage.length !== 0 && (
-          <button
-            className='btn right'
-            onClick={() => {
-              func(page + 1);
-              setPage(page + 1);
-            }}
-          ></button>
-        )}
-      </div>
-    </div>
+            <div className='choice-box'>
+              <h2>Średnica Opony</h2>
+              <Input
+                id='srednica'
+                element='select'
+                options={["13", "14", "15", "16", "17"]}
+                onInput={onInput}
+              />
+            </div>
+            <div className='choice-box'>
+              <h2>Szerokość Opony</h2>
+              <Input
+                id='szerokosc'
+                element='select'
+                options={[
+                  "135",
+                  "145",
+                  "155",
+                  "165",
+                  "175",
+                  "185",
+                  "195",
+                  "205",
+                  "215",
+                  "225",
+                  "235",
+                  "245",
+                  "255",
+                  "31",
+                  "33",
+                ]}
+                onInput={onInput}
+              />
+            </div>
+            <div className='choice-box'>
+              <h2>Profil Opony</h2>
+              <Input
+                id='profil'
+                element='select'
+                options={[
+                  "10.5",
+                  "12.5",
+                  "35",
+                  "40",
+                  "45",
+                  "50",
+                  "55",
+                  "60",
+                  "65",
+                  "70",
+                  "75",
+                  "80",
+                  "85",
+                ]}
+                onInput={onInput}
+              />
+            </div>
+            <div className='choice-box'>
+              <h2>Rodzaj Opony</h2>
+              <CheckedBox
+                name='rodzaj'
+                tytul='Samochodowa'
+                id='samochodowa'
+                onInput={onInput}
+                state={searchState}
+              ></CheckedBox>
+              <CheckedBox
+                name='rodzaj'
+                id='terenowa'
+                tytul='Terenowa'
+                onInput={onInput}
+                state={searchState}
+              ></CheckedBox>
+              <CheckedBox
+                name='rodzaj'
+                id='wzmacniana'
+                tytul='Wzmacniana'
+                onInput={onInput}
+                state={searchState}
+              ></CheckedBox>
+            </div>
+            <div className='choice-box'>
+              <h2>Sezon</h2>
+              <CheckedBox
+                name='sezon'
+                tytul='Lato'
+                id='lato'
+                onInput={onInput}
+                state={searchState}
+              ></CheckedBox>
+              <CheckedBox
+                name='sezon'
+                id='zima'
+                tytul='Zima'
+                onInput={onInput}
+                state={searchState}
+              ></CheckedBox>
+              <CheckedBox
+                name='sezon'
+                id='allseason'
+                tytul='All Season'
+                onInput={onInput}
+                state={searchState}
+              ></CheckedBox>
+            </div>
+            <div className='choice-box'>
+              <h2>Sortuj</h2>
+              <CheckedBox
+                name='sorty'
+                tytul='Cena - rosnąco'
+                id='up'
+                onInput={onInput}
+                state={searchState}
+              ></CheckedBox>
+              <CheckedBox
+                name='sorty'
+                id='down'
+                tytul='Cena - malejąco'
+                onInput={onInput}
+                state={searchState}
+              ></CheckedBox>
+            </div>
+
+            <button className='btn'>Filtruj</button>
+            <div>
+              <button
+                className='btn'
+                onClick={async (e) => {
+                  window.location.reload();
+                }}
+              >
+                Resetuj Filtry
+              </button>
+            </div>
+          </form>
+
+          <div className='search-result'>
+            {tyres &&
+              tyres.map((el, index) => (
+                <div className='tyre-item' key={index}>
+                  <h2>{el.name}</h2>
+                  <img
+                    src={`${process.env.REACT_APP_API_URL}/${el.imageCover}`}
+                    alt='sraka'
+                  />
+                  <div className='price-button'>
+                    <p>{parseFloat(el.price).toFixed(2)} ZŁ</p>
+                    <Link to={`/tyres/${el._id}`}>
+                      <button className='btn'> Sprawdz </button>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+          </div>
+          <div className='page-set'>
+            {page > 1 && (
+              <button
+                className='btn left'
+                onClick={() => {
+                  func(page - 1);
+                  setPage(page - 1);
+                }}
+              ></button>
+            )}
+            {nextPage && nextPage.length !== 0 && (
+              <button
+                className='btn right'
+                onClick={() => {
+                  func(page + 1);
+                  setPage(page + 1);
+                }}
+              ></button>
+            )}
+          </div>
+        </div>
+      )}
+    </React.Fragment>
   );
 };
 
 export default Shop;
-
